@@ -7,6 +7,7 @@ import {RouterProvider} from 'react-router-dom'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-      <RouterProvider router={router} fallbackElement={<div>Router Error</div>} />
+      <RouterProvider router={router}/>
+      {/* fallbackElement={<div>Router Error</div>} */}
   </React.StrictMode>,
 )

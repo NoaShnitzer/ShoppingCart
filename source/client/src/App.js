@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import Header from './components/frame/Header.jsx'
 import Footer from './components/frame/Footer.jsx'
+import Navbar from './components/frame/Navbar.jsx'
 import { Outlet } from 'react-router-dom'
-// import Navbar from './components/frame/navbar.tsx'
+// import Navbar from './components/frame/navbar.jsx'
 import { Provider } from 'react-redux'
 import { store } from './state/store.jsx'
 
@@ -13,6 +14,7 @@ function App() {
 
   <Provider store={store}>
     <Header/>
+    <Navbar/>
         <Outlet />
     <Footer/>
   </Provider>
