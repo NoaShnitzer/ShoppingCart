@@ -8,7 +8,7 @@ import {  useNavigate } from 'react-router-dom';
 
 
 
-const Navbar= () => {
+export default function Navbar(){
 
   const navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState(0);
@@ -26,11 +26,17 @@ const Navbar= () => {
     if (newValue == 0) {
        navigate("/")
     }else if (newValue == 1) {
-      navigate("/CartSummary")
-    }else if (newValue == 2) {
-      navigate("/CartSummary")
-    }else{
       navigate("/")
+    }else if (newValue == 2) {
+      navigate("/")
+    }else if (newValue == 3) {
+      navigate("/")
+    }else if (newValue == 4) {
+      navigate("/")
+    // } else if (newValue == 5) {
+    //   navigate("/CartSummary")
+    // }else{
+    //   navigate("/")
     }
   }
 
@@ -38,67 +44,119 @@ const Navbar= () => {
 
     return(
       console.log("navbar", selectedItem),
-        <AppBar position='sticky' style={{backgroundColor:"#90caf9", direction:"rtl"}}>
+        <AppBar position='static' style={{backgroundColor:"#90caf9", direction:"rtl"}}>
           <Container maxWidth="xl">
-            <Toolbar>
-              <Typography
+            <Toolbar style={{justifyContent:"center"}}>
+            <Typography
                 className={ selectedItem == 0 ? 'selected-item': 'not-seleceted-item'}
                 onClick={(e) => handleChange(e, 0)}
                 variant="h6"
-                noWrap
+                // nowrap
                 component="a"
                 // href="/"
                 sx={{
-                  mr: 2,
+                  mr: 5,
                   display: { xs: 'none', md: 'flex' },
                   fontFamily: 'monospace',
                   fontWeight: 700,
-                  letterSpacing: '.2rem',
+                  letterSpacing: '.1rem',
                   textDecoration: 'none',
                 }}
               >
-                חיפוש
+                אנא הזן בשורת החיפוש את הפריט שברצונך לרכוש, בחר את קטגוריית הפריט, והוסף לסל.
+              </Typography>
+              {/* <Typography
+                className={ selectedItem == 0 ? 'selected-item': 'not-seleceted-item'}
+                onClick={(e) => handleChange(e, 0)}
+                variant="h6"
+                nowrap
+                component="a"
+                // href="/"
+                sx={{
+                  mr: 5,
+                  display: { xs: 'none', md: 'flex' },
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: '.1rem',
+                  textDecoration: 'none',
+                }}
+              >
+                מוצרי ניקיון
               </Typography>
               <Typography
                 className={ selectedItem == 1 ? 'selected-item': 'not-seleceted-item'}
                 onClick={(e) => handleChange(e, 1)}
                 variant="h6"
-                noWrap
+                nowrap
                 component="a"
                 // href="/record"
                 sx={{
-                  mr: 2,
+                  mr: 5,
                   display: { xs: 'none', md: 'flex' },
                   fontFamily: 'monospace',
                   fontWeight: 700,
-                  letterSpacing: '.2rem',
+                  letterSpacing: '.1rem',
                   textDecoration: 'none',
                 }}
               >
-                רשומות
+                גבינות
               </Typography>
               <Typography
                 className={ selectedItem == 2 ? 'selected-item': 'not-seleceted-item'}
                 onClick={(e) => handleChange(e, 2)}
                 variant="h6"
-                noWrap
+                nowrap
                 component="a"
                 // href="/report"
                 sx={{
-                  mr: 2,
+                  mr: 5,
                   display: { xs: 'none', md: 'flex' },
                   fontFamily: 'monospace',
                   fontWeight: 700,
-                  letterSpacing: '.2rem',
+                  letterSpacing: '.1rem',
                   textDecoration: 'none',
                 }}
               >
-                טפסים
+                ירקות ופירות
               </Typography> 
+              <Typography
+                className={ selectedItem == 3 ? 'selected-item': 'not-seleceted-item'}
+                onClick={(e) => handleChange(e, 2)}
+                variant="h6"
+                nowrap
+                component="a"
+                // href="/report"
+                sx={{
+                  mr: 5,
+                  display: { xs: 'none', md: 'flex' },
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: '.1rem',
+                  textDecoration: 'none',
+                }}
+              >
+                בשר ודגים
+              </Typography> 
+              <Typography
+                className={ selectedItem == 4 ? 'selected-item': 'not-seleceted-item'}
+                onClick={(e) => handleChange(e, 2)}
+                variant="h6"
+                nowrap
+                component="a"
+                // href="/report"
+                sx={{
+                  mr: 5,
+                  display: { xs: 'none', md: 'flex' },
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: '.1rem',
+                  textDecoration: 'none',
+                }}
+              >
+                מאפים 
+              </Typography>  */}
             </Toolbar>
           </Container>
         </AppBar>
   );
 }
-
-export default Navbar

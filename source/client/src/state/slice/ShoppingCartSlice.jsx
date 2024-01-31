@@ -1,5 +1,7 @@
-import {PayloadAction, createSlice} from '@reduxjs/toolkit'
+import {PayloadAction, createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 import axios from 'axios';
+// import { state } from '../../../../server/db';
+// import { state } from '../../../../server/db';
 
 
 
@@ -8,10 +10,19 @@ const initialState  = {
     shoppingCart:  [
         {
             name:"",
-            price:""
+            category:""
         }
-    ]    
-    // isOpen: true,
+    ], 
+    // isOpen: false,
+    // searchInput:"",
+    totalItems: 0,
+    personalDetails:  
+        {
+            firstName:"",
+            lastName:"",
+            address:"",
+            email:""
+        }
 }
 
 
@@ -19,44 +30,70 @@ export const ShoppingCartSlice = createSlice({
     name: "shoppingCart",
     initialState,
     reducers:{
-        onchangeInputReducer : (state, action) => {
-            // console.log("onchangeInputReducer", "action", action.type, "payload" ,action.payload);
-            // console.log("action", action.type)
-            // console.log("payload", action.payload)
-            // switch (action.type) {
-            //     case 'UPDATE_FILE_NUMBER':
-            //         // state.searchFields.term = action.payload.value ;                      
-            //         state.recordFields = { ...state.recordFields, fileNumber: action.payload.value };                      
-            //         break
-            //     default:
-            //     }
+        addToCategory : (state, action) => {
+            // console.log("addToCategory", "action", action.type, "payload" ,action.payload);
+            // state.shoppingCart.push({category: action.payload.type, name: action.payload.value})
+            // console.log("state.shoppingCart in slice",state.shoppingCart)
+            state.shoppingCart = [...state.shoppingCart, {category: action.payload.type, name: action.payload.value}]
+            console.log("state.shoppingCart in slice",state.shoppingCart)
+
         },
-        // changeFormInput: (state, action: PayloadAction<{
-        //     fileNumber: number,}>) => {
-        //         state.recordFields = {
-        //             fileNumber: action.payload.fileNumber,
-        //         };      
-        // },
+        addToCart: (state) => {
+            state.totalItems ++
+        },
         clearInputs: (state) => {
             state.shoppingCart = []
             // state.isOpen = true;
         },
-        toggleIsOpen: (state) => {
-            console.log("toggleIsOpen", state.isOpen);
-            state.isOpen = !state.isOpen;
+        // toggleIsOpen: (state) => {
+        //     console.log("toggleIsOpen", state.isOpen);
+        //     state.isOpen = !state.isOpen;
+        // },
+        onchangeInputReducer : (state, action) => {
+            switch (action.payload.type) {
+                case ' UPDATE_SEARCH':   
+                    state.searchFields.term = action.payload.value;
+                    break
+            }
         },
-
-        onSearchRecord: (state) => {
-            console.log("onSearch", state.shoppingCart);
+        onchangePSInput : (state, action) => {
+            console.log("onchangeInput", "action", action.type, "payload" ,action.payload);
+            switch (action.payload.type) {
+                case 'UPDATE_FIRST_NAME':
+                    state.personalDetails.firstName = action.payload.value ;               
+                    break
+                case 'UPDATE_LAST_NAME':
+                    state.personalDetails.lastName = action.payload.value ;                      
+                    break
+                case 'UPDATE_ADDRESS':
+                    state.personalDetails.address = action.payload.value;                      
+                    break
+                case 'UPDATE_EMAIL':
+                    state.personalDetails.email = action.payload.value ;                      
+                    break
+                default:
+            }
+        },
+        // toggleIsSummaryOpen: (state) => {
+        //     console.log("toggleIsOpen", state.isOpen);
+        //     state.isOpen = !state.isOpen;
+        // },
+        onSubmitOrder: (state) => {
+            console.log(state.personalDetails)
+            const newObject = {name: state.personalDetails.firstName, address: state.personalDetails.address,
+                 email: state.personalDetails.email, orderDetails: JSON.stringify(state.shoppingCart)}
+            console.log("onSubmitOrder", state.shoppingCart);
         try{
-            axios.post('/api/getProduct', { data: state }).then((resp) => 
+            axios.post('http://localhost:8000/orders', newObject ,{headers: {
+                'Content-Type': 'application/json',
+              }},).then((resp) => 
             {
                 console.log(resp)
                 if(resp.data.status == "ERROR"){ //alert about error in BN number
                     //alert(resp.data.message);
                     console.log(resp.data.message);
                 }else{  
-                    console.log("חיפוש בוצע בהצלחה" + resp.data.results.requestNumber);
+                    console.log("success")
                 }
                 console.log(resp.data)
             })
@@ -71,7 +108,9 @@ export const ShoppingCartSlice = createSlice({
 
 
 export default ShoppingCartSlice.reducer
-export const shoppingCart = (state) => state.shoppingCart;
-export const selectIsOpen = (state)=> state.shoppingCart.isOpen;
-export const { onSearchRecord, toggleIsOpen, clearInputs } = ShoppingCartSlice.actions;
-// , deleteRecord
+export const totalItems = (state) => state.shoppingCart.totalItems;
+export const searchInput = (state) => state.shoppingCart.searchInput;
+export const shoppingCart = (state) => state.shoppingCart.shoppingCart;
+export const personalDetails =  (state) => state.shoppingCart.personalDetails
+export const { onSubmitOrder, onchangePSInput, onSearchRecord, clearInputs, onchangeInputReducer, addToCart, addToCategory } = ShoppingCartSlice.actions;
+// , deleteRecord, 

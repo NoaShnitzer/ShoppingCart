@@ -1,8 +1,9 @@
 import { createBrowserRouter, useRouteError, isRouteErrorResponse } from 'react-router-dom'
 import AddProduct from "../components/AddProduct";
-import CartSummary from "../components/CartSummary";
+import CartSummary from "../components/Checkout";
 import GroceriesList from "../components/GroceriesList";
 import App from '../App';
+import GroceriesView from '../components/GroceriesView';
 
 
 
@@ -10,23 +11,29 @@ const router = createBrowserRouter([
  
   {
     path: "/",
-    element: <App />,
+    element: <App/>,
     children: [
       {
         index: true,
-        element: <GroceriesList />,
+        element: <GroceriesView/>,
         // errorElement:<ErrorBoundary/>
+      },
+      {
+        path: "/GroceriesList",
+        index: true,
+        element: <GroceriesList/>,
+          // errorElement:<ErrorBoundary/>
       },
       {
         path: "/CartSummary",
         index: true,
-        element: <CartSummary />,
+        element: <CartSummary/>,
           // errorElement:<ErrorBoundary/>
       },
       {
         path: "/AddProduct",
         index: true,
-        element: <AddProduct />,
+        element: <AddProduct/>,
         // errorElement:<ErrorBoundary/>
       },
       {
