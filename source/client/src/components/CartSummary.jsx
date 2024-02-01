@@ -3,9 +3,11 @@ import { onchangeInput } from '../state/slice/PersonalDetailsSlice'
 import { useAppSelector, useAppDispatch} from "../state/store";
 import { shoppingCart } from "../state/slice/ShoppingCartSlice";
 import { useEffect, useState } from "react";
+import { selectIsOpen } from "../state/slice/PersonalDetailsSlice";
 
 export default function CartSummary(){
 
+    const isOpen = useAppSelector(selectIsOpen)
 
     const dispatch = useAppDispatch()
     const cartItems = useAppSelector(shoppingCart)
@@ -47,7 +49,7 @@ export default function CartSummary(){
 
 
     return (
-        <div >
+        <div style={{ width: isOpen? "80%":"100%", justifyContent:isOpen?"start":"center"}} >
 
             <Grid item xs={12} md={6} style={{marginTop:"73px"}}>
                 <Divider>:סיכום הקניה</Divider>

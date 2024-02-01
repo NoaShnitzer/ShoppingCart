@@ -26,7 +26,7 @@ export default function Header(){
                         letterSpacing: '.2rem',}}   
                         // nowrap
                         component="span">
-                        סופרנועה
+                        עגלת הקניות שלי
                     </Typography>      
                 </Grid>
 

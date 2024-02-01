@@ -16,6 +16,12 @@ export default function GroceriesView(){
             <GroceriesList/>
             {isOpen && <Checkout/>}
             <CartSummary/>
+
+{/* 
+            {isOpen? <GroceriesList width="80%"/>:<GroceriesList/>}
+            <GroceriesList/>
+            {isOpen && <Checkout/>}
+            {isOpen? <CartSummary width="80%"/>:<CartSummary/>} */}
             
         </div>
     )

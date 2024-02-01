@@ -7,9 +7,37 @@
 }
 
 .inputs{
+    width: 100%;
     margin:auto;
     align-items: center;
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
+}
+
+.inputsopen{
+    width: 80%;
+    /* right: inherit; */
+    margin:auto;
+    align-items: end;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.search{
+    margin: auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.searchopen{
+    width: 80%;
+    /* margin: auto; */
+    align-items: start;
+    /* display: flex;
+    flex-direction: column; */
+    margin-bottom: 20px;
 }

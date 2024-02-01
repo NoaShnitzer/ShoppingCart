@@ -1,13 +1,15 @@
-import CartSummary from "./Checkout"
+// import CartSummary from "./Checkout"
 import { useState } from "react"
 import { TextField , Grid, Box, Button, ButtonGroup} from "@mui/material"
-import ShoppingCartSlice from "../state/slice/ShoppingCartSlice"
+import { useAppSelector, useAppDispatch} from "../state/store";
+// import ShoppingCartSlice from "../state/slice/ShoppingCartSlice"
 import {searchInput, onchangeInputReducer, addToCart, addToCategory} from '../state/slice/ShoppingCartSlice'
-import { useAppDispatch } from "../state/store"
+import { selectIsOpen } from "../state/slice/PersonalDetailsSlice"
 // import  '../../src/css/styles.scss'
 import "../css/styles.css"
 
 export default function GroceriesList(){
+    const isOpen = useAppSelector(selectIsOpen)
 
     const dispatch = useAppDispatch()
     const searchValue = useAppDispatch(searchInput)
@@ -38,7 +40,8 @@ export default function GroceriesList(){
     }
 
     return (
-        <Box direction="rtl" className="inputs"
+        <Box direction="rtl" className={isOpen? "inputsopen":"inputs"}
+        // style={{ width: isOpen? "80%":"100%", justifyContent:isOpen?"start":"center"}}
             // style={{margin:"auto", alignItems:"center",display:"flex", flexDirection:"column"}}
         >
             {/* <TextField/> */}
@@ -55,7 +58,7 @@ export default function GroceriesList(){
                 maxWidth: 1100,
                 flexGrow: 1,
                 }}>
-                <Grid item xs={12} md={12} style={{margin:"auto", alignItems:"center",display:"flex", flexDirection:"column", marginBottom:"20px"}}>
+                <Grid item xs={12} md={12} style={{margin:"auto", alignItems: isOpen? "end": "center",display:"flex", flexDirection:"column", marginBottom:"20px"}}>
                     <TextField
                         dir="rtl"
                         type="text"
@@ -82,11 +85,11 @@ export default function GroceriesList(){
                 <h3 className="inputs">אנא בחר את קטגוריית המוצר</h3>
                 {/* <Grid style={{justifyContent:"center"}}>אנא בחר את קטגוריית המוצר</Grid> */}
                 <ButtonGroup >
-                    <Button onClick={(e) =>changeselectedCategory(e, 1, "FRUITS_AND_VEGGIES")} style={{backgroundColor: seleceted? "blue":"green"}} >ירקות ופירות</Button>
-                    <Button onClick={(e) =>changeselectedCategory(e, 2, "DAIRY")} className={seleceted ===2? "selectedButton":"notSelectedButton"} >מוצרי חלב</Button>
-                    <Button onClick={(e) =>changeselectedCategory(e, 3, "MEAT_AND_FISH")} className={seleceted ===3? "selectedButton":"notSelectedButton"} >בשר ודגים</Button>
-                    <Button onClick={(e) =>changeselectedCategory(e, 4, "CLEANING_TOOLS")} className={seleceted ===4? "selectedButton":"notSelectedButton"} >מוצרי ניקיון</Button>
-                    <Button onClick={(e) =>changeselectedCategory(e, 5, "PASTRIES")} className={seleceted ===5? "selectedButton":"notSelectedButton"} >מאפים</Button>
+                    <Button onClick={(e) =>changeselectedCategory(e, 1, "FRUITS_AND_VEGGIES")} style={{backgroundColor: seleceted===1? "#e3f2fd":"white"}} >ירקות ופירות</Button>
+                    <Button onClick={(e) =>changeselectedCategory(e, 2, "DAIRY")} style={{backgroundColor: seleceted===2? "#e3f2fd":"white"}} >מוצרי חלב</Button>
+                    <Button onClick={(e) =>changeselectedCategory(e, 3, "MEAT_AND_FISH")} style={{backgroundColor: seleceted===3? "#e3f2fd":"white"}} >בשר ודגים</Button>
+                    <Button onClick={(e) =>changeselectedCategory(e, 4, "CLEANING_TOOLS")} style={{backgroundColor: seleceted===4? "#e3f2fd":"white"}} >מוצרי ניקיון</Button>
+                    <Button onClick={(e) =>changeselectedCategory(e, 5, "PASTRIES")} style={{backgroundColor: seleceted===5? "#e3f2fd":"white"}} >מאפים</Button>
                 </ButtonGroup>
             </Grid>
             {/* <CartSummary/> */}

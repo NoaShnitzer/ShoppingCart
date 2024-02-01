@@ -40,7 +40,7 @@ catch(err) {
     }
 
     return (
-        <div style={{width:"20%", justifyContent:"end"}}>
+        <div style={{width:"20%", justifyContent:"end", top:0}}>
             {/* , borderRight:" solid black" */}
             <Card style={{minHeight:"100vh"}}>
             <Grid 
