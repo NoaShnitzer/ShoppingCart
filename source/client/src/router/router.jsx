@@ -1,5 +1,4 @@
 import { createBrowserRouter, useRouteError, isRouteErrorResponse } from 'react-router-dom'
-import AddProduct from "../components/AddProduct";
 import CartSummary from "../components/Checkout";
 import GroceriesList from "../components/GroceriesList";
 import App from '../App';
@@ -29,12 +28,6 @@ const router = createBrowserRouter([
         index: true,
         element: <CartSummary/>,
           // errorElement:<ErrorBoundary/>
-      },
-      {
-        path: "/AddProduct",
-        index: true,
-        element: <AddProduct/>,
-        // errorElement:<ErrorBoundary/>
       },
       {
         path:"*",

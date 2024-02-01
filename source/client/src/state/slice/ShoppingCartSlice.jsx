@@ -1,7 +1,5 @@
 import {PayloadAction, createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 import axios from 'axios';
-// import { state } from '../../../../server/db';
-// import { state } from '../../../../server/db';
 
 
 
@@ -13,8 +11,6 @@ const initialState  = {
             category:""
         }
     ], 
-    // isOpen: false,
-    // searchInput:"",
     totalItems: 0,
     personalDetails:  
         {
@@ -31,9 +27,6 @@ export const ShoppingCartSlice = createSlice({
     initialState,
     reducers:{
         addToCategory : (state, action) => {
-            // console.log("addToCategory", "action", action.type, "payload" ,action.payload);
-            // state.shoppingCart.push({category: action.payload.type, name: action.payload.value})
-            // console.log("state.shoppingCart in slice",state.shoppingCart)
             state.shoppingCart = [...state.shoppingCart, {category: action.payload.type, name: action.payload.value}]
             console.log("state.shoppingCart in slice",state.shoppingCart)
 
@@ -43,12 +36,7 @@ export const ShoppingCartSlice = createSlice({
         },
         clearInputs: (state) => {
             state.shoppingCart = []
-            // state.isOpen = true;
         },
-        // toggleIsOpen: (state) => {
-        //     console.log("toggleIsOpen", state.isOpen);
-        //     state.isOpen = !state.isOpen;
-        // },
         onchangeInputReducer : (state, action) => {
             switch (action.payload.type) {
                 case ' UPDATE_SEARCH':   
@@ -74,10 +62,6 @@ export const ShoppingCartSlice = createSlice({
                 default:
             }
         },
-        // toggleIsSummaryOpen: (state) => {
-        //     console.log("toggleIsOpen", state.isOpen);
-        //     state.isOpen = !state.isOpen;
-        // },
         onSubmitOrder: (state) => {
             console.log(state.personalDetails)
             const newObject = {name: state.personalDetails.firstName, address: state.personalDetails.address,
@@ -113,4 +97,3 @@ export const searchInput = (state) => state.shoppingCart.searchInput;
 export const shoppingCart = (state) => state.shoppingCart.shoppingCart;
 export const personalDetails =  (state) => state.shoppingCart.personalDetails
 export const { onSubmitOrder, onchangePSInput, onSearchRecord, clearInputs, onchangeInputReducer, addToCart, addToCategory } = ShoppingCartSlice.actions;
-// , deleteRecord, 

@@ -1,5 +1,4 @@
-import { Grid, TextField, Button, Card, Divider, List, ListItem} from "@mui/material";
-import { onchangeInput } from '../state/slice/PersonalDetailsSlice'
+import { Grid, Divider, List, ListItem} from "@mui/material";
 import { useAppSelector, useAppDispatch} from "../state/store";
 import { shoppingCart } from "../state/slice/ShoppingCartSlice";
 import { useEffect, useState } from "react";
@@ -18,9 +17,6 @@ export default function CartSummary(){
     const [pastries, setPastries] = useState([])
 
     console.log(cleaningTools)
-
-    
-    // const [fruitsVeggies, setFruitsVeggies] = useState(cartItems.find(item) => item.category == "FRUITS_AND_VEGGIES")
     
    
 
@@ -67,55 +63,39 @@ export default function CartSummary(){
                     maxWidth: 1100,
                     flexGrow: 1,
                     }}>
-            {/* return results.map((result: { id: Key | null | undefined; name: any; value: any; }) => (
-            console.log("result.value" , result.value),
-            result.value?
-            <span key={result.id} style={{backgroundColor:"#ede7f6"}}>
-                  {result.name} : {result.value},{" "}
-                {/* {result.name &&  ":" && result.value && ","}  */}
-            {/* </span> */}
-            {/* :"" */} 
-                
-
-            {/* {cartItems.map((item)  => {
-                <Grid key={item.categort}>
-                    {item.name}
-                </Grid>
-            })
-            } */}
 
 
                 <Grid container item xs={12} md={2} spacing={2}>מוצרי ניקיון
-                    <List item xs={12} md={2} spacing={2}>
+                    <List item xs={12} md={2} spacing={2} dir="rtl">
                         {cleaningTools.map((item, index) => {
                             return( 
-                                <ListItem key={index}>
+                                <ListItem key={index} dir="rtl">
                                     {item.name}
                                 </ListItem>
                             )
                         })}
                     </List>
                 </Grid>
-                <Grid container item xs={12} md={2} spacing={2}>גבינות
-                        <List item xs={12} md={2} spacing={2}>
+                <Grid container item xs={12} md={2} spacing={2}>מוצרי חלב
+                        <Grid item xs={12} md={2} spacing={2} dir="rtl">
                             {dairy.map((d, index) => {
                                 return(
-                                   <ListItem key={index}>{d.name}</ListItem> 
+                                   <Grid dir="rtl" key={index}>{d.name}</Grid> 
                                 )
                             })}
-                        </List>
+                        </Grid>
                 </Grid>
                 <Grid container item xs={12} md={2} spacing={2}>ירקות ופירות
                     <List item xs={12} md={2} spacing={2}>
                         {fruitsVeggies.map((d, index) => {
                             return(
-                                <ListItem key={index}>{d.name}</ListItem> 
+                                <ListItem dir="trl" key={index}>{d.name}</ListItem> 
                             )
                         })}
                     </List>
                 </Grid>
                 <Grid container item xs={12} md={2} spacing={2}>בשר ודגים
-                    <List item xs={12} md={2} spacing={2}>
+                    <List item xs={12} md={2} spacing={2} dir="rtl">
                         {meatFish.map((d, index) => {
                             return(
                                 <ListItem key={index}>{d.name}</ListItem> 
@@ -124,10 +104,10 @@ export default function CartSummary(){
                     </List>
                 </Grid>
                 <Grid container item xs={12} md={2} spacing={2}>מאפים
-                    <List item xs={12} md={2} spacing={2}>
+                    <List item xs={12} md={2} spacing={2} dir="rtl">
                         {pastries.map((d, index) => {
                             return(
-                                <ListItem key={index}>{d.name}</ListItem> 
+                                <ListItem dir="rtl" key={index}>{d.name}</ListItem> 
                             )
                         })}
                     </List>

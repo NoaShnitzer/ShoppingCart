@@ -1,10 +1,8 @@
 import { Grid, TextField, Button, Card} from "@mui/material";
-// import {personalDetails, onSendPS, onSubmitOrder} from '../state/slice/PersonalDetailsSlice'
 import { onchangePSInput, onSubmitOrder, personalDetails, shoppingCart} from '../state/slice/ShoppingCartSlice'
 import { toggleIsOpen} from '../state/slice/PersonalDetailsSlice'
 import { useAppSelector, useAppDispatch} from "../state/store";
 import axios from 'axios';
-// import {  } from "../state/slice/ShoppingCartSlice";
 
 export default function Checkout(){
 
@@ -25,8 +23,7 @@ try{
       }},).then((resp) => 
     {
         console.log(resp)
-        if(resp.data.status == "ERROR"){ //alert about error in BN number
-            //alert(resp.data.message);
+        if(resp.data.status == "ERROR"){
             console.log(resp.data.message);
         }else{  
             console.log("success")
@@ -41,7 +38,6 @@ catch(err) {
 
     return (
         <div style={{width:"20%", justifyContent:"end", top:0}}>
-            {/* , borderRight:" solid black" */}
             <Card style={{minHeight:"100vh"}}>
             <Grid 
                 container 
@@ -59,7 +55,6 @@ catch(err) {
                 
                 <Grid item xs={12} md={12} >
                     <TextField
-                        // className="form-input"
                         type="string"
                         label={"שם פרטי"}
                         id='123'
@@ -79,7 +74,6 @@ catch(err) {
                 </Grid>
                 <Grid item xs={12} md={12} >
                     <TextField
-                        // className="form-input"
                         type="string"
                         label={"שם משפחה"}
                         id='123'
@@ -99,7 +93,6 @@ catch(err) {
                 </Grid>
                 <Grid item xs={12} md={12} >
                     <TextField
-                        // className="form-input"
                         type="string"
                         label={"כתובת"}
                         id='123'
@@ -119,7 +112,6 @@ catch(err) {
                 </Grid>
                 <Grid item xs={12} md={12} >
                     <TextField
-                        // className="form-input"
                         type="string"
                         label={"אימייל"}
                         id='123'

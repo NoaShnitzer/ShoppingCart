@@ -1,7 +1,4 @@
 import { Button, Grid, Typography} from '@mui/material'
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import { useState } from 'react';
-import {  useNavigate } from 'react-router-dom';
 import { totalItems} from '../../state/slice/ShoppingCartSlice';
 import {selectIsOpen, toggleIsOpen} from '../../state/slice/PersonalDetailsSlice'
 import { useAppDispatch, useAppSelector } from '../../state/store';
@@ -9,11 +6,9 @@ import { useAppDispatch, useAppSelector } from '../../state/store';
 
 export default function Header(){
 
-    // const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector(selectIsOpen)
     const basketTotalItems = useAppSelector(totalItems)
-    // const [selectedItem, setSelectedItem] = useState(0);
   
    
     return (
@@ -24,7 +19,6 @@ export default function Header(){
                         variant="h4"
                         style={{fontFamily: "monospace", fontWeight: 700,
                         letterSpacing: '.2rem',}}   
-                        // nowrap
                         component="span">
                         עגלת הקניות שלי
                     </Typography>      
@@ -36,7 +30,6 @@ export default function Header(){
                         variant="h7"
                         style={{fontFamily: "monospace", fontWeight: 700,
                         letterSpacing: '.2rem',}}   
-                        // nowrap
                         component="span">
                         {basketTotalItems}:סך פריטים
                     </Typography>      
@@ -47,11 +40,8 @@ export default function Header(){
                     <Button
                         variant="outlined"
                         color="success"
-                        // className={ selectedItem == 0 ? 'selected-item': 'not-seleceted-item'}
                         onClick={() => dispatch(toggleIsOpen())}
-                        // onClick={navigate("/CartSummary")}
                         style={{fontFamily: "monospace", fontWeight: 700, letterSpacing: '.2rem',}}   
-                        // nowrap
                         component="span">
                          {isOpen? "חזרה להמשך רכישה":"לתשלום"}
                     </Button>  
